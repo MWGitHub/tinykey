@@ -15,7 +15,7 @@ test('user is created', t => {
   });
 });
 
-test('user password is checked', t=> {
+test('user password is checked', t => {
   return co(function* () {
     const result = yield user.create({
       email: 'test@example.com',
