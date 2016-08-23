@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.uuid('id').unique().primary().notNullable();
     table.string('email').unique().notNullable();
     table.string('password').notNullable();
+    table.timestamps();
   });
 };
 
