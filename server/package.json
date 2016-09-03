@@ -7,7 +7,7 @@
     "knex": "knex",
     "migrate": "knex migrate:latest",
     "start": "node index.js",
-    "test": "ava"
+    "test": "ava test/unit/**/*.js"
   },
   "keywords": [],
   "author": "",

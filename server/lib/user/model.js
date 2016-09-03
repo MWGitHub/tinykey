@@ -3,6 +3,7 @@
 const uuid = require('node-uuid');
 const bcrypt = require('bcrypt');
 
+const table = 'users';
 const saltRounds = 10;
 
 function create(properties) {
@@ -12,10 +13,14 @@ function create(properties) {
     const password = properties.password;
     bcrypt.hash(password, saltRounds, (err, hash) => {
       if (err) return reject(err);
+      
       resolve({
-        id: id,
-        email: email,
-        password: hash
+        table: table,
+        data: {
+          id: id,
+          email: email,
+          password: hash
+        }
       });
     });
   });
@@ -30,7 +35,12 @@ function checkPassword(password, hash) {
   });
 }
 
+function save(database, user) {
+  database.create(user);
+}
+
 module.exports = {
   create: create,
-  checkPassword: checkPassword
+  checkPassword: checkPassword,
+  save: save
 };

@@ -1,12 +1,16 @@
 'use strict';
 
 const Hapi = require('hapi');
+const config = require('./config');
+const database = require('./lib/db');
+const user = require('./lib/user/plugin');
 
 const server = new Hapi.Server();
+const databaseInstance = database();
 
 server.connection({
-  host: process.env.IP,
-  port: process.env.PORT
+  host: config.host,
+  port: config.port
 });
 
 server.route({
@@ -16,6 +20,15 @@ server.route({
     return reply('hello world');
   }
 });
+
+server.register([
+  {
+    register: user,
+    options: {
+      database: database
+    }
+  }
+])
 
 server.start((err) => {
   if (err) {
