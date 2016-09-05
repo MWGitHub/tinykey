@@ -1,5 +1,3 @@
-'use strict';
-
 const knexConfig = require('./knexfile');
 
 module.exports = {

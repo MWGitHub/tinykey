@@ -41,11 +41,11 @@ function user(database) {
   }
   
   function save() {
-    return database.create(model);
+    return database.create(model).then(() => { return model });
   }
   
   function update() {
-    return database.update(model);
+    return database.update(model).then(() => { return model });
   }
   
   return model;

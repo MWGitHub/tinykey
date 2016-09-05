@@ -9,7 +9,7 @@ function database(config) {
    * @param  {Object} properties       properties of the model.
    * @param  {string} properties.table table of to insert into.
    * @param  {Object} properties.data  key/value pairs to store.
-   * @return {Object} the model with the resulting id.
+   * @return {Object} the promise with an array with the resulting ids.
    */
   function create(properties) {
     const data = Object.assign({
@@ -18,28 +18,46 @@ function database(config) {
     }, properties.data);
     
     
-    return client(properties.table).insert(data, 'id');
+    return client(properties.table)
+      .insert(data, 'id');
   }
   
   /**
-   * Update an object or multiple objects with the given properties.
+   * Update an object.
    * 
-   * @param  {Object} query the query to run.
-   * @param  {Object} data  key/value pairs to update.
-   * @return {Object} the model or models with the updated data.
+   * @param  {string} column           check the value against this.
+   * @param  {Object} value            value to check with.
+   * @param  {Object} properties       properties of the model.
+   * @param  {string} properties.table table of to insert into.
+   * @param  {Object} properties.data  key/value pairs to store.
+   * @return {Object} the promise with the number of updated rows.
    */
-  function update(query, data) {
-    const merged = Object.assign({
+  function update(column, value, properties) {
+    const data = Object.assign({
       updated_at: new Date()
-    }, data);
+    }, properties.data);
     
-    return query.update(merged);
+    return client(properties.table)
+      .where(column, value)
+      .update(data);
   }
   
   /**
-   * Tears down the database connection.
+   * Retrieves an object.
+   * 
+   * @param  {string} table  table to retrieve from.
+   * @param  {string} column check the value against this.
+   * @param  {Object} value  value to check with.
+   * @return {Object} the promise with the retrieved data.
    */
-  function destroy() {
+  function retrieve(table, column, value) {
+    return client(table).select('*').where(column, value);
+  }
+  
+  /**
+   * Close the database connection.
+   */
+  function close() {
     return client.destroy();
   }
   
@@ -47,7 +65,7 @@ function database(config) {
     client,
     create,
     update,
-    destroy
+    close
   }
 }
 

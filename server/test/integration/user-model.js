@@ -15,7 +15,7 @@ function setupDatabase() {
 }
 
 function destroyDatabase(db) {
-  return db.destroy();
+  return db.close();
 }
 
 test('user is created', t => {

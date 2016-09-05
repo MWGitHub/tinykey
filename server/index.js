@@ -1,5 +1,3 @@
-'use strict';
-
 const Hapi = require('hapi');
 const config = require('./config');
 const database = require('./lib/db');
