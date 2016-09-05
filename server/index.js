@@ -3,7 +3,7 @@
 const Hapi = require('hapi');
 const config = require('./config');
 const database = require('./lib/db');
-const user = require('./lib/user/plugin');
+const user = require('./lib/user');
 
 const server = new Hapi.Server();
 const databaseInstance = database();

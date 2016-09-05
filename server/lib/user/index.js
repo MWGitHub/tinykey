@@ -1,7 +1,7 @@
 'use strict';
 
-const handlers = require('./handlers');
-const routes = require('./routes');
+const handlers = require('./user-handlers');
+const routes = require('./user-routes');
 
 function register(server, options, next) {
   const database = options.database;

@@ -1,6 +1,6 @@
 'use strict';
 
-const userModel = require('./model');
+const userModel = require('./user-model');
 
 function handlers(database) {
   function create(request, reply) {

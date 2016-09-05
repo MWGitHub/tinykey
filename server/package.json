@@ -7,7 +7,7 @@
     "knex": "knex",
     "migrate": "knex migrate:latest",
     "start": "node index.js",
-    "test": "ava test/unit/**/*.js"
+    "test": "tape test/unit/**/*.js test/integration/**/*.js | tap-spec"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,9 @@
     "pg": "^6.1.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0"
+    "istanbul": "^0.4.5",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
   },
   "ava": {
     "files": [
