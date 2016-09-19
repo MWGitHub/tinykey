@@ -14,5 +14,8 @@ module.exports = {
       }
     ]
   },
-  devTool: 'source-map'
+  watchOptions: {
+    poll: true
+  },
+  devtool: 'source-map'
 };
