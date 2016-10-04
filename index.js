@@ -1,7 +1,7 @@
 import main from './lib/main';
 
 (function start() {
-  document.addEventListener('DOMContentLoaded', function onLoaded() {
-    main();
+  document.addEventListener('DOMContentLoaded', () => {
+    main(document.getElementById('entry'));
   });
-})();
+}());
