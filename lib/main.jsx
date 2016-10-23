@@ -4,7 +4,6 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import Root from './pages/root';
 import Home from './pages/home';
 import VaultUtil from './util/vault-util';
-import config from '../config';
 import UserUtil from './util/user-util';
 import Unseal from './pages/unseal';
 import VaultStore from './stores/vault';
@@ -67,7 +66,7 @@ const router = (
 
 function start(element) {
   UserUtil.loginLocal();
-  VaultUtil.fetchSealedStatus(config.VAULT_ADDR)
+  VaultUtil.fetchSealedStatus()
   .then(() => {
     ReactDOM.render(router, element);
   });

@@ -2,7 +2,6 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 import VaultUtil from '../util/vault-util';
 import VaultStore from '../stores/vault';
-import config from '../../config';
 
 class Unseal extends React.Component {
   constructor(props) {
@@ -48,7 +47,7 @@ class Unseal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    VaultUtil.sendUnsealKey(config.VAULT_ADDR, this.state.key);
+    VaultUtil.sendUnsealKey(this.state.key);
 
     e.target.reset();
     this.setState({ key: '' });
