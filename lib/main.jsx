@@ -17,7 +17,7 @@ function notFound() {
 
 function requireReady(nextState, replace) {
   const status = VaultStore.getSealedStatus();
-  const token = UserStore.getToken();
+  const token = UserStore.getUser().token;
 
   if (status.sealed) {
     replace({
@@ -43,7 +43,7 @@ function requireSealed(nextState, replace) {
 }
 
 function requireLoggedOut(nextState, replace) {
-  const token = UserStore.getToken();
+  const token = UserStore.getUser().token;
 
   if (token) {
     replace({

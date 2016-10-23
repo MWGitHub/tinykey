@@ -9,7 +9,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    const token = UserStore.getToken();
+    const token = UserStore.getUser().token;
 
     this.state = {
       token,
@@ -28,7 +28,7 @@ class Login extends React.Component {
   }
 
   _onChange() {
-    const token = UserStore.getToken();
+    const token = UserStore.getUser().token;
 
     if (token) {
       hashHistory.push('/');
