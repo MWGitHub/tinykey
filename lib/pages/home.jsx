@@ -2,6 +2,7 @@ import React from 'react';
 import VaultUtil from '../util/vault-util';
 import UserStore from '../stores/user';
 import VaultStore from '../stores/vault';
+import Directory from '../components/directory';
 
 class Home extends React.Component {
   constructor(props) {
@@ -39,7 +40,12 @@ class Home extends React.Component {
 
     return (
       <div>
-        <p>Unsealed and logged in!</p>
+        <div className="sidebar">
+          <Directory root={this.state.paths} />
+        </div>
+        <div>
+          <p>Unsealed and logged in!</p>
+        </div>
       </div>
     );
   }
